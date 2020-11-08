@@ -11,6 +11,3 @@ expression: NUMBER                                  #constantExpr
           | ID                                      #variableExpr
           | expression op=(PLUS|MINUS) expression   #plusMinusExpr
           ;
-
-string: '"' (char | ID | WS)? '"';
-char: 'QUOT' (LETTER | '@' | '&' | '%' | '/' | '\\')+ 'QUOT';
