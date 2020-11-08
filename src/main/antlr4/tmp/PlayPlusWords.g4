@@ -15,15 +15,21 @@ QUESTION: '?';
 EXCLAMATION: '!';
 COLON: ':';
 SEMICOLON: ';';
+HASH: '#';
+DOT: '.';
 
+IMPORT: 'import';
+MAP: 'map';
 STRING: 'string';
 CHAR: 'char';
 
-ANY_SPACE: SINGLE_SPACE+;
-SINGLE_SPACE: ' ';
+//ANY_SPACE: SINGLE_SPACE+;
+//SINGLE_SPACE: ' ';
 
 
 // Identifiers
+
+FILENAME: ID DOT MAP;
 
 ID: LETTER (LETTER | DIGIT)* ;
 
@@ -44,4 +50,4 @@ COMMENT: '//' .*? '\r'? '\n' -> skip;
 // Whitespaces -> ignored
 
 NEWLINE: '\r'? '\n'  -> skip ;
-WS: [ \n\r\t]+ -> skip ;
+WS: [ \t]+ -> skip ;
