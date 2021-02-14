@@ -4,7 +4,7 @@ import PlayPlusWords;
 
 root: instruction+;
 
-instruction: AFFECT LPAR ID COMMA expression RPAR   #affectInstr
+instruction: AFFECT '(' ID ',' expression ')'   #affectInstr
            ;
 
 expression: NUMBER                                  #constantExpr
@@ -12,20 +12,20 @@ expression: NUMBER                                  #constantExpr
           | expression opArithmetique expression    #arithmetiqueExpr
           ;
 
-varDecl: ID AS type SEMICOLON;
+varDecl: ID AS type ';';
 
 type: scalar | array;
 
 scalar: BOOLEAN | INTEGER | SQUARE;
 
-array: scalar (ANY_SPACE)* LBRACKET NUMBER+ (COLON (NUMBER+))? (ANY_SPACE)* RBRACKET;
+array: scalar (ANY_SPACE)* '[' NUMBER+ (',' (NUMBER+))? (ANY_SPACE)* ']';
 
 exprD : exprEnt
     | exprBool
     | exprCase
     | exprG
-    | ID LPAR (exprD (COMMA exprD)*) RPAR
-    | LPAR exprD RPAR;
+    | ID '(' (exprD (COMMA exprD)*) ')'
+    | '(' exprD ')';
 
 exprEnt: NUMBER
     | LATITUDE | LONGITUDE | GRID_SIZE
@@ -49,11 +49,11 @@ exprCase: ' ';
 
 exprG: ' ';
 
-opArithmetique: MINUS
-    | PLUS
-    | MULT
-    | DIV
-    | MOD;
+opArithmetique: '-'
+    | '+'
+    | '*'
+    | '/'
+    | '%';
 
 opBoolCompare1: AND
     | OR
